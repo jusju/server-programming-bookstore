@@ -1,31 +1,39 @@
 <!DOCTYPEhtml>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Booklist</title>
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
+<title>Booklist</title>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}">
 </head>
 
 <body>
-<div class="container">
-<h1 class="text-center">Books</h1>
-<table class="table table-striped">
-	<tr>
-		<th>Author</th>
-		<th>Title</th>
-		<th>ISBN</th>
-		<th>Year</th>
-		<th></th>
-	</tr>
-	<tr th:each="book : ${books}">
-		<td th:text="${book.getAuthor()}"></td>
-		<td th:text="${book.getTitle()}"></td>
-		<td th:text="${book.getIsbn()}"></td>
-		<td th:text="${book.getYear()}"></td>
-		<td><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
-	</tr>
-</table>
-<a href="/add" class="btn btn-success">Add Book</a>
-</div>
+	<div class="container">
+		<h1 class="text-center">Books</h1>
+		<table class="table table-striped">
+			<tr>
+				<th>Author</th>
+				<th>Title</th>
+				<th>ISBN</th>
+				<th>Year</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="book : ${books}">
+				<td th:text="${book.getAuthor()}"></td>
+				<td th:text="${book.getTitle()}"></td>
+				<td th:text="${book.getIsbn()}"></td>
+				<td th:text="${book.getYear()}"></td>
+				<td>
+					<a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
+				</td>
+				<td>
+					<a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
+				</td>
+			</tr>
+		</table>
+		<a href="/add" class="btn btn-success">Add Book</a>
+	</div>
 </body>
 
 </html>
