@@ -15,6 +15,16 @@ public class Book {
 	private String title;
 	private String year;
 	
+	protected Book() {}
+	
+	public Book(String author, String isbn, String title, String year) {
+		super();
+		this.author = author;
+		this.isbn = isbn;
+		this.title = title;
+		this.year = year;
+	}
+	
 	public long getId() {
 		return id;
 	}
