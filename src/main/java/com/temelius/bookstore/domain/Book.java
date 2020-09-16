@@ -11,17 +11,17 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String author;
-	private String isbn;
 	private String title;
+	private String isbn;
 	private String year;
 	
 	public Book() {}
 	
-	public Book(String author, String isbn, String title, String year) {
+	public Book(String author, String title, String isbn, String year) {
 		super();
 		this.author = author;
-		this.isbn = isbn;
 		this.title = title;
+		this.isbn = isbn;
 		this.year = year;
 	}
 	
