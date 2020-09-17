@@ -12,35 +12,40 @@ import com.temelius.bookstore.domain.*;
 @Controller
 public class BookstoreController {
 	@Autowired
-	private BookstoreRepository repository;
+	private BookstoreRepository brepository;
+	
+	@Autowired
+	private CategoryRepository crepository;
 	
 	@RequestMapping(value = {"/", "/booklist"})
 	public String booklist(Model model) {
-		model.addAttribute("books", repository.findAll());
+		model.addAttribute("books", brepository.findAll());
 		return "booklist";
 	}
 	
 	@RequestMapping(value = "/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", crepository.findAll());
 		return "addbook";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Book book) {
-		repository.save(book);
+		brepository.save(book);
 		return "redirect:booklist";
 	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
-		repository.deleteById(bookId);
+		brepository.deleteById(bookId);
 		return "redirect:../booklist";
 	}
 	
 	@RequestMapping(value = "/edit/{id}")
 	public String editBook(@PathVariable("id") Long bookId, Model model) {
-		model.addAttribute("book", repository.findById(bookId));
+		model.addAttribute("book", brepository.findById(bookId));
+		model.addAttribute("categories", crepository.findAll());
 		return "editbook";
 	}
 }
