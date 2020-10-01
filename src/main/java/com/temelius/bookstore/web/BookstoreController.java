@@ -17,12 +17,14 @@ public class BookstoreController {
 	@Autowired
 	private CategoryRepository crepository;
 	
+	// Show all books
 	@RequestMapping(value = {"/", "/booklist"})
 	public String booklist(Model model) {
 		model.addAttribute("books", brepository.findAll());
 		return "booklist";
 	}
 	
+	// Add new book
 	@RequestMapping(value = "/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
@@ -30,18 +32,21 @@ public class BookstoreController {
 		return "addbook";
 	}
 	
+	// Save new book
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Book book) {
 		brepository.save(book);
 		return "redirect:booklist";
 	}
 	
+	// Delete specified book
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 		brepository.deleteById(bookId);
 		return "redirect:../booklist";
 	}
 	
+	// Edit specified book
 	@RequestMapping(value = "/edit/{id}")
 	public String editBook(@PathVariable("id") Long bookId, Model model) {
 		model.addAttribute("book", brepository.findById(bookId));
