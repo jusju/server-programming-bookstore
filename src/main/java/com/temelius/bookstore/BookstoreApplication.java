@@ -35,6 +35,7 @@ public class BookstoreApplication {
 			crepository.save(new Category("Sci-Fi"));
 			crepository.save(new Category("Realism"));
 			crepository.save(new Category("Satire"));
+			crepository.save(new Category("Programming"));
 			
 			brepository.save(new Book("Ernest Hemingway", "A Farewell to Arms", "1232323-21", "1929", crepository.findByName("Realism").get(0)));
 			brepository.save(new Book("George Orwell", "Animal Farm", "2212343-5", "1945", crepository.findByName("Satire").get(0)));
